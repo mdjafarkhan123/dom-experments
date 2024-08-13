@@ -1,0 +1,17 @@
+.wrapper {
+    padding: 20px;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul span {
+    display: block;
+    max-width: 250px;
+    padding: 4px 10px;
+    border: 2px solid white;
+    background-color: rgb(193, 235, 248);
+    cursor: pointer;
+}
