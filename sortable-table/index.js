@@ -1,37 +1,62 @@
+let filter = document.getElementById("sort");
 let table = document.getElementById("table");
-table.onclick = function (event) {
-    if (event.target.tagName !== "TH") return;
-    let tbody = table.querySelector("tbody");
-    let rowArray = Array.from(tbody.rows);
-    let colName = event.target.dataset.title;
-    let compareFn;
+let tbody = table.tBodies[0];
+let arr = Array.from(tbody.rows);
+let cArr = Array.from(arr);
+let compare;
 
-    switch (colName) {
+filter.addEventListener("input", function (event) {
+    let value = this.value;
+    switch (value) {
+        case "reset":
+            {
+                tbody.innerHTML = "";
+                tbody.append(...cArr);
+            }
+
+            break;
         case "name":
             {
-                compareFn = function (rowA, rowB) {
-                    return rowA.cells[0].innerHTML > rowB.cells[0].innerHTML
-                        ? 1
-                        : -1;
+                compare = function (rowA, rowB) {
+                    return rowA.cells[0].innerHTML
+                        .toLowerCase()
+                        .localeCompare(rowB.cells[0].innerHTML.toLowerCase());
                 };
             }
+
             break;
-        case "earning":
+
+        case "class":
             {
-                compareFn = function (rowA, rowB) {
-                    return rowA.cells[1].innerHTML - rowB.cells[1].innerHTML;
+                compare = function (rowA, rowB) {
+                    return (
+                        parseInt(rowA.cells[1].innerHTML) -
+                        parseInt(rowB.cells[1].innerHTML)
+                    );
                 };
             }
             break;
-        case "state": {
-            compareFn = function (rowA, rowB) {
-                return rowA.cells[2].innerHTML > rowB.cells[2].innerHTML
-                    ? 1
-                    : -1;
+
+        case "roll":
+            {
+                compare = function (rowA, rowB) {
+                    return rowA.cells[2].innerHTML - rowB.cells[2].innerHTML;
+                };
+            }
+            break;
+
+        case "cgpa": {
+            compare = function (rowA, rowB) {
+                return (
+                    parseFloat(rowA.cells[3].innerHTML) -
+                    parseFloat(rowB.cells[3].innerHTML)
+                );
             };
         }
     }
-
-    rowArray.sort(compareFn);
-    tbody.append(...rowArray);
-};
+    if (value !== "reset") {
+        arr.sort(compare);
+        tbody.innerHTML = "";
+        tbody.append(...arr);
+    }
+});

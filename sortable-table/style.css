@@ -1,156 +1,110 @@
-:root {
-    --bg-table-stripe: #f6f6f5;
-    --b-table: #e3e3e2;
-    --caption: #242423;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,700;0,800;1,900&display=swap");
+html {
+    color-scheme: light dark;
+}
+body {
+    background-color: #1b2a31;
+    color: rgba(255, 254, 254, 0.863);
+    font-family: "Nunito", sans-serif;
+    font-family: Consolas;
+    font-size: 16px;
+    margin: 0;
+}
+
+section {
+    padding: 25px;
+}
+
+select {
+    /* styling */
+    width: 100%;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
+    background-color: transparent;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+
+    /* reset */
+
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select option {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: none;
+    border-radius: 8px;
+}
+
+select.classic {
+    background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            rgb(255, 255, 255) 50%
+        ),
+        linear-gradient(135deg, rgb(255, 255, 255) 50%, transparent 50%),
+        linear-gradient(
+            to right,
+            rgba(135, 207, 235, 0),
+            rgba(135, 207, 235, 0)
+        );
+    background-position: calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px), 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+}
+
+select.classic:focus {
+    background-image: linear-gradient(45deg, white 50%, transparent 50%),
+        linear-gradient(135deg, transparent 50%, white 50%),
+        linear-gradient(to right, gray, gray);
+    background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em, 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+    border-color: grey;
+    outline: 0;
+}
+
+
+
+/* ========= Table styling ========*/
+.table_component {
+    overflow: auto;
+    width: 100%;
 }
 
 table {
-    background-color: transparent;
-    border-collapse:collapse;
-  	font-family: Arial, Helvetica, sans-serif
+    border: 1px solid #e8e8e8;
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+caption {
+    caption-side: top;
+    text-align: left;
 }
 
 th {
-    text-align:left;
+    border: 1px solid #e8e8e8;
+    background-color: #026b46;
+    color: #ffffff;
+    padding: 5px 10px;
     cursor: pointer;
 }
 
-.dcf-txt-center {
-      text-align: center!important
-    }
-
-    .dcf-txt-left {
-      text-align: left!important
-    }
-
-    .dcf-txt-right {
-      text-align: right!important
-    }
-    
-.dcf-table caption {
-      color: var(--caption);
-      font-size: 1.13em;
-      font-weight: 700;
-      padding-bottom: .56rem
-    }
-
-    .dcf-table thead {
-      font-size: .84em
-    }
-
-    .dcf-table tbody {
-      border-bottom: 1px solid var(--b-table);
-      border-top: 1px solid var(--b-table);
-      font-size: .84em
-    }
-
-    .dcf-table tfoot {
-      font-size: .84em
-    }
-
-    .dcf-table td, .dcf-table th {
-      padding-right: 1.78em
-    }
-
-    .dcf-table-bordered, .dcf-table-bordered td, .dcf-table-bordered th {
-      border: 1px solid var(--b-table)
-    }
-
-    .dcf-table-bordered td, .dcf-table-bordered th, .dcf-table-striped td, .dcf-table-striped th {
-      padding-left: 1em;
-      padding-right: 1em
-    }
-
-    .dcf-table-bordered tr:not(:last-child), .dcf-table-striped tr:not(:last-child) {
-      border-bottom: 1px solid var(--b-table)
-    }
-
-    .dcf-table-striped tbody tr:nth-of-type(2n) {
-      background-color: var(--bg-table-stripe)
-    }
-
-    .dcf-table thead td, .dcf-table thead th {
-      padding-bottom: .75em;
-      vertical-align: bottom
-    }
-
-    .dcf-table tbody td, .dcf-table tbody th, .dcf-table tfoot td, .dcf-table tfoot th {
-      padding-top: .75em;
-      vertical-align: top
-    }
-
-    .dcf-table tbody td, .dcf-table tbody th {
-      padding-bottom: .75em
-    }
-
-    .dcf-table-bordered thead th {
-      padding-top: 1.33em
-    }
-
-    .dcf-wrapper-table-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      left: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      padding-bottom: 1em;
-      position: relative;
-      right: 50%;
-      width: 100vw
-    }
-
-    @media only screen and (max-width:42.09em) {
-      .dcf-table-responsive thead {
-        clip: rect(0 0 0 0);
-        -webkit-clip-path: inset(50%);
-        clip-path: inset(50%);
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        width: 1px;
-        white-space: nowrap
-      }
-      .dcf-table-responsive tr {
-        display: block
-      }
-      .dcf-table-responsive td {
-        -webkit-column-gap: 3.16vw;
-        -moz-column-gap: 3.16vw;
-        column-gap: 3.16vw;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        text-align: left!important
-      }
-      .dcf-table-responsive.dcf-table-bordered, .dcf-table-responsive.dcf-table-bordered thead th {
-        border-width: 0
-      }
-      .dcf-table-responsive.dcf-table-bordered tbody td {
-        border-top-width: 0
-      }
-      .dcf-table-responsive:not(.dcf-table-bordered) tbody tr {
-        padding-bottom: .75em
-      }
-      .dcf-table-responsive:not(.dcf-table-bordered) tbody td {
-        padding-bottom: 0
-      }
-      .dcf-table-responsive:not(.dcf-table-bordered):not(.dcf-table-striped) tbody td {
-        padding-right: 0
-      }
-      .dcf-table-responsive.dcf-table-bordered tbody tr:last-child td:last-child {
-        border-bottom-width: 0
-      }
-      .dcf-table-responsive tbody td:before {
-        content: attr(data-label);
-        float: left;
-        font-weight: 700;
-        padding-right: 1.78em
-      }
-    }
-
-.dcf-overflow-x-auto {
-      overflow-x: auto!important;
-      -webkit-overflow-scrolling: touch
-    }
-    
-.dcf-w-100\% {
-  width: 100%!important;
+td {
+    border: 1px solid #e8e8e8;
+    padding: 5px 10px;
+}
